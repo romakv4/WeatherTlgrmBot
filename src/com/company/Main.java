@@ -1,14 +1,23 @@
 package com.company;
 
 import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
 
 public class Main extends TelegramLongPollingBot {
+
+    private String geo;
 
     public static void main(String[] args) {
         ApiContextInitializer.init();
@@ -35,9 +44,54 @@ public class Main extends TelegramLongPollingBot {
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
             if (message.getText().equals("/help"))
-                sendMsg(message, "Привет, я робот");
-            else
-                sendMsg(message, "Ты амеба? Диалоги мне пропиши)))))))))))))0");
+                sendMsg(message, "Привет, я робот, чтобы узнать погоду введите команду /weather");
+
+            else if (message.getText().equals("/weather")) {
+
+                String query = "http://api.openweathermap.org/data/2.5/weather?q=" +
+                        "Moscow,rf" +
+                        "&APPID=d4f9cdcc72088078ab2092ebe1841883";
+
+                HttpURLConnection connection = null;
+                
+                try {
+                    connection = (HttpURLConnection) new URL(query).openConnection();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    assert connection != null;
+                    connection.setRequestMethod("GET");
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                }
+                connection.setUseCaches(false);
+                connection.setConnectTimeout(250);
+                connection.setReadTimeout(250);
+
+                try {
+                    connection.connect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                StringBuilder sb = new StringBuilder();
+                try {
+                    if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
+                        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                        String line;
+                        while ((line = in.readLine()) != null) {
+                            sb.append(line);
+                            sb.append("\n");
+                        }
+                        System.out.println(sb.toString());
+                        sendMsg(message, sb.toString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -54,4 +108,3 @@ public class Main extends TelegramLongPollingBot {
         }
     }
 }
-
