@@ -17,8 +17,6 @@ import java.net.URL;
 
 public class Main extends TelegramLongPollingBot {
 
-    private String geo;
-
     public static void main(String[] args) {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
@@ -67,8 +65,8 @@ public class Main extends TelegramLongPollingBot {
                     e.printStackTrace();
                 }
                 connection.setUseCaches(false);
-                connection.setConnectTimeout(250);
-                connection.setReadTimeout(250);
+                connection.setConnectTimeout(200);
+                connection.setReadTimeout(200);
 
                 try {
                     connection.connect();
@@ -85,11 +83,13 @@ public class Main extends TelegramLongPollingBot {
                             sb.append(line);
                             sb.append("\n");
                         }
-                        System.out.println(sb.toString());
+
                         sendMsg(message, sb.toString());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    connection.disconnect();
                 }
             }
         }
