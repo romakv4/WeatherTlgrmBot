@@ -7,15 +7,16 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Weather getting class for WeatherTelegramBot.
  */
-public class WeatherGetting {
+class WeatherGetting {
 
     private static OkHttpClient client = new OkHttpClient();
 
-    public static String getJSON(String url) throws IOException {
+    static String getJSON(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -24,23 +25,43 @@ public class WeatherGetting {
         return response.body().string();
     }
 
-    public static String[] getWeather(String city) {
-        String json = null;
+    static String getWeather() {
 
-        try {
-            json = getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + city +
-                    "&APPID=d4f9cdcc72088078ab2092ebe1841883");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String direction = null;
+
+        GettingJson gJson = new GettingJson();
+
         Gson gson = new Gson();
 
-        OpenWeatherAPI opwei = gson.fromJson(json, OpenWeatherAPI.class);
+        OpenWeatherAPI opwei = gson.fromJson(gJson.gettingJson("Moscow,rf"), OpenWeatherAPI.class);
 
-        return new String[]{
-                "City: " + opwei.getName(),
-                "Clouds: " + opwei.getClouds()
+        int degree = Integer.parseInt(opwei.getWind().getDeg());
+
+        if (degree == 0) {
+            direction = "западный";
+        } else if (degree > 0 && degree <90) {
+            direction = "юго-западный";
+        } else if (degree == 90) {
+            direction = "южный";
+        } else if (degree > 90 && degree < 180) {
+            direction = "юго-восточный";
+        }else if (degree == 180) {
+            direction = "восточный";
+        }else if (degree > 180 && degree <270) {
+            direction = "северо-восточный";
+        }else if (degree == 270) {
+            direction = "северный";
+        }else if (degree > 270 && degree <= 360) {
+            direction = "северо-западный";
+        }
+
+        String[] strings = {
+                "Город: " + opwei.getName(),
+                "Видимость: " + opwei.getVisibility(),
+                "Скорость ветра: " + opwei.getWind().getSpeed() + "м/с",
+                "Направление ветра: " + direction
         };
-    }
 
+        return Arrays.toString(strings).replaceAll(", ", "\n");
+    }
 }
