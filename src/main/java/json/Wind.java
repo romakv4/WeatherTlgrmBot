@@ -5,26 +5,23 @@ package json;
  */
 public class Wind
 {
-    private String speed;
+    private int speed;
 
-    private String deg;
+    private int deg;
 
-    public String getSpeed ()
+    public int getSpeed ()
     {
         return speed;
     }
 
-    public void setSpeed (String speed)
+    public void setSpeed (int speed)
     {
         this.speed = speed;
     }
 
-    public String getDeg ()
-    {
-        return deg;
-    }
+    public int getDeg () { return deg; }
 
-    public void setDeg (String deg)
+    public void setDeg (int deg)
     {
         this.deg = deg;
     }

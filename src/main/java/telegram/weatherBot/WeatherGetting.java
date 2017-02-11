@@ -27,39 +27,23 @@ class WeatherGetting {
 
     static String getWeather() {
 
-        String direction = null;
-
         GettingJson gJson = new GettingJson();
 
         Gson gson = new Gson();
 
         OpenWeatherAPI opwei = gson.fromJson(gJson.gettingJson("Moscow,rf"), OpenWeatherAPI.class);
 
-        int degree = Integer.parseInt(opwei.getWind().getDeg());
+        int degree = opwei.getWind().getDeg();
 
-        if (degree == 0) {
-            direction = "западный";
-        } else if (degree > 0 && degree <90) {
-            direction = "юго-западный";
-        } else if (degree == 90) {
-            direction = "южный";
-        } else if (degree > 90 && degree < 180) {
-            direction = "юго-восточный";
-        }else if (degree == 180) {
-            direction = "восточный";
-        }else if (degree > 180 && degree <270) {
-            direction = "северо-восточный";
-        }else if (degree == 270) {
-            direction = "северный";
-        }else if (degree > 270 && degree <= 360) {
-            direction = "северо-западный";
-        }
+        WindRose wr = new WindRose();
+
+        Double Temp = Double.valueOf(opwei.getMain().getTemp()) - 273.15;
 
         String[] strings = {
                 "Город: " + opwei.getName(),
                 "Видимость: " + opwei.getVisibility(),
-                "Скорость ветра: " + opwei.getWind().getSpeed() + "м/с",
-                "Направление ветра: " + direction
+                "Ветер: " + opwei.getWind().getSpeed() + "м/с" + wr.windRose(degree),
+                "Погода: " + Temp + "°C"
         };
 
         return Arrays.toString(strings).replaceAll(", ", "\n");

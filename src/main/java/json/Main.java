@@ -5,9 +5,9 @@ package json;
  */
 public class Main
 {
-    private String tempmax;
+    private Double tempmax;
 
-    private String tempmin;
+    private Double tempmin;
 
     private String humidity;
 
@@ -15,22 +15,22 @@ public class Main
 
     private String temp;
 
-    public String getTempmax ()
+    public Double getTempmax ()
     {
         return tempmax;
     }
 
-    public void setTempmax (String tempmax)
+    public void setTempmax (Double tempmax)
     {
         this.tempmax = tempmax;
     }
 
-    public String getTempmin ()
+    public Double getTempmin ()
     {
         return tempmin;
     }
 
-    public void setTempmin (String tempmin)
+    public void setTempmin (Double tempmin)
     {
         this.tempmin = tempmin;
     }
