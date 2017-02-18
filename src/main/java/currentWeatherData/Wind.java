@@ -1,4 +1,4 @@
-package json;
+package currentWeatherData;
 
 /**
  * Json structure for information about winds.

@@ -1,7 +1,7 @@
-package json;
+package currentWeatherData;
 
 /**
- * SysInfo json structure.
+ * SysInfo currentWeatherData structure.
  */
 public class Sys {
     private String message;
