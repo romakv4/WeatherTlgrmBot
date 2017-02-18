@@ -6,7 +6,7 @@ package telegram.weatherBot;
 class WindRose {
     private String direction = null;
 
-    String windRose(int degree) {
+    String windRose(Double degree) {
         if (degree == 0) {
             direction = "→";
         } else if (degree > 0 && degree < 90) {

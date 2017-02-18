@@ -1,7 +1,5 @@
 package telegram.weatherBot;
 
-import org.telegram.telegrambots.api.objects.Message;
-
 import java.io.IOException;
 
 import static telegram.weatherBot.WeatherGetting.getJSON;

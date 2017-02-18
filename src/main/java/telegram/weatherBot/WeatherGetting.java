@@ -25,24 +25,23 @@ class WeatherGetting {
         return response.body().string();
     }
 
-    static String getWeather() {
+    static String getWeather(String city) {
 
         GettingJson gJson = new GettingJson();
 
         Gson gson = new Gson();
 
-        OpenWeatherAPI opwei = gson.fromJson(gJson.gettingJson("Moscow,rf"), OpenWeatherAPI.class);
-
-        int degree = opwei.getWind().getDeg();
+        OpenWeatherAPI opwei = gson.fromJson(gJson.gettingJson(city), OpenWeatherAPI.class);
 
         WindRose wr = new WindRose();
 
         Double Temp = Double.valueOf(opwei.getMain().getTemp()) - 273.15;
 
+
         String[] strings = {
                 "Город: " + opwei.getName(),
-                "Видимость: " + opwei.getVisibility(),
-                "Ветер: " + opwei.getWind().getSpeed() + "м/с" + wr.windRose(degree),
+                "Облачность: " + opwei.getClouds(),
+                "Ветер: " + opwei.getWind().getSpeed() + "м/с" + wr.windRose(opwei.getWind().getDeg()),
                 "Погода: " + Temp + "°C"
         };
 

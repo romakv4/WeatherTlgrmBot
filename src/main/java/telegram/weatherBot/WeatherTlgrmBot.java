@@ -1,13 +1,12 @@
 package telegram.weatherBot;
 
-import json.OpenWeatherAPI;
-import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import static org.telegram.telegrambots.ApiContextInitializer.*;
 import static telegram.weatherBot.WeatherGetting.getWeather;
 
 /**
@@ -16,7 +15,7 @@ import static telegram.weatherBot.WeatherGetting.getWeather;
 public class WeatherTlgrmBot extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
-        ApiContextInitializer.init();
+        init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(new WeatherTlgrmBot());
@@ -42,10 +41,13 @@ public class WeatherTlgrmBot extends TelegramLongPollingBot {
 
         if (message != null && message.hasText()) {
             if (message.getText().equals("/help")) {
-                sendMsg(message, "");
-            } else if (message.getText().equals("/weather")) {
-                sendMsg(message, (getWeather()));
+                sendMsg(message, "Введите название города, чтобы узнать текущую погоду в нем");
+            } else if (message.getText() != null && !message.getText().equals("/help") &&
+                    !message.getText().equals("/start")) {
+                sendMsg(message, getWeather(message.getText()));
+
             }
+
         }
     }
 

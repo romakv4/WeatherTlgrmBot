@@ -3,35 +3,29 @@ package json;
 /**
  * Json structure for information about coordinates.
  */
-public class Coord
-{
+public class Coord {
     private String lon;
 
     private String lat;
 
-    public String getLon ()
-    {
+    public String getLon() {
         return lon;
     }
 
-    public void setLon (String lon)
-    {
+    public void setLon(String lon) {
         this.lon = lon;
     }
 
-    public String getLat ()
-    {
+    public String getLat() {
         return lat;
     }
 
-    public void setLat (String lat)
-    {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [lon = "+lon+", lat = "+lat+"]";
+    public String toString() {
+        return "ClassPojo [lon = " + lon + ", lat = " + lat + "]";
     }
 }

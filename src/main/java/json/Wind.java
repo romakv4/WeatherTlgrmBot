@@ -3,32 +3,29 @@ package json;
 /**
  * Json structure for information about winds.
  */
-public class Wind
-{
-    private int speed;
+public class Wind {
+    private String speed;
 
-    private int deg;
+    private Double deg;
 
-    public int getSpeed ()
-    {
+    public String getSpeed() {
         return speed;
     }
 
-    public void setSpeed (int speed)
-    {
+    public void setSpeed(String speed) {
         this.speed = speed;
     }
 
-    public int getDeg () { return deg; }
+    public Double getDeg() {
+        return deg;
+    }
 
-    public void setDeg (int deg)
-    {
+    public void setDeg(Double deg) {
         this.deg = deg;
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [speed = "+speed+", deg = "+deg+"]";
+    public String toString() {
+        return "ClassPojo [speed = " + speed + ", deg = " + deg + "]";
     }
 }

@@ -3,71 +3,79 @@ package json;
 /**
  * Main information.
  */
-public class Main
-{
-    private Double tempmax;
-
-    private Double tempmin;
-
+public class Main {
     private String humidity;
 
     private String pressure;
 
+    private String temp_max;
+
+    private String sea_level;
+
+    private String temp_min;
+
     private String temp;
 
-    public Double getTempmax ()
-    {
-        return tempmax;
-    }
+    private String grnd_level;
 
-    public void setTempmax (Double tempmax)
-    {
-        this.tempmax = tempmax;
-    }
-
-    public Double getTempmin ()
-    {
-        return tempmin;
-    }
-
-    public void setTempmin (Double tempmin)
-    {
-        this.tempmin = tempmin;
-    }
-
-    public String getHumidity ()
-    {
+    public String getHumidity() {
         return humidity;
     }
 
-    public void setHumidity (String humidity)
-    {
+    public void setHumidity(String humidity) {
         this.humidity = humidity;
     }
 
-    public String getPressure ()
-    {
+    public String getPressure() {
         return pressure;
     }
 
-    public void setPressure (String pressure)
-    {
+    public void setPressure(String pressure) {
         this.pressure = pressure;
     }
 
-    public String getTemp ()
-    {
+    public String getTemp_max() {
+        return temp_max;
+    }
+
+    public void setTemp_max(String temp_max) {
+        this.temp_max = temp_max;
+    }
+
+    public String getSea_level() {
+        return sea_level;
+    }
+
+    public void setSea_level(String sea_level) {
+        this.sea_level = sea_level;
+    }
+
+    public String getTemp_min() {
+        return temp_min;
+    }
+
+    public void setTemp_min(String temp_min) {
+        this.temp_min = temp_min;
+    }
+
+    public String getTemp() {
         return temp;
     }
 
-    public void setTemp (String temp)
-    {
+    public void setTemp(String temp) {
         this.temp = temp;
     }
 
+    public String getGrnd_level() {
+        return grnd_level;
+    }
+
+    public void setGrnd_level(String grnd_level) {
+        this.grnd_level = grnd_level;
+    }
+
     @Override
-    public String toString()
-    {
-        return "ClassPojo [tempmax = "+tempmax+", tempmin = "+tempmin+", humidity = "+humidity+", pressure = "+pressure+", temp = "+temp+"]";
+    public String toString() {
+        return "ClassPojo [humidity = " + humidity + ", pressure = " + pressure + ", temp_max = " + temp_max + ", sea_level = " + sea_level + ", temp_min = " + temp_min + ", temp = " + temp + ", grnd_level = " + grnd_level + "]";
     }
 }
