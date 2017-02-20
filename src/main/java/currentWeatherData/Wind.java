@@ -4,15 +4,15 @@ package currentWeatherData;
  * Json structure for information about winds.
  */
 public class Wind {
-    private String speed;
+    private float speed;
 
     private Double deg;
 
-    public String getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(String speed) {
+    public void setSpeed(float speed) {
         this.speed = speed;
     }
 

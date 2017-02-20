@@ -9,6 +9,8 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static java.lang.String.*;
+
 /**
  * Weather getting class for WeatherTelegramBot.
  */
@@ -34,15 +36,14 @@ class WeatherGetting {
         OpenWeatherAPI opwei = gson.fromJson(gJson.gettingJson(city), OpenWeatherAPI.class);
 
         WindRose wr = new WindRose();
+        Cloudiness cloudiness = new Cloudiness();
 
-        Double Temp = Double.valueOf(opwei.getMain().getTemp()) - 273.15;
-
+        Double Temp = Double.valueOf(opwei.getMain().getTemp_max()) - 273.15;
 
         String[] strings = {
-                "Город: " + opwei.getName(),
-                "Облачность: " + opwei.getClouds(),
-                "Ветер: " + opwei.getWind().getSpeed() + "м/с" + wr.windRose(opwei.getWind().getDeg()),
-                "Погода: " + Temp + "°C"
+                format("Погода: %d°C", Math.round(Temp)),
+                cloudiness.getCloudiness(opwei.getClouds()),
+                format("Ветер: %s %sм/с", wr.windRose(opwei.getWind().getDeg()), Math.round(opwei.getWind().getSpeed())),
         };
 
         return Arrays.toString(strings).replaceAll(", ", "\n");

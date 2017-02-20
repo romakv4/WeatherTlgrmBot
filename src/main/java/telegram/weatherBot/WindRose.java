@@ -8,21 +8,21 @@ class WindRose {
 
     String windRose(Double degree) {
         if (degree == 0) {
-            direction = "→";
-        } else if (degree > 0 && degree < 90) {
-            direction = "↗";
-        } else if (degree == 90) {
-            direction = "↑";
-        } else if (degree > 90 && degree < 180) {
-            direction = "↖";
-        } else if (degree == 180) {
             direction = "←";
-        } else if (degree > 180 && degree < 270) {
+        } else if (degree > 0 && degree < 90) {
             direction = "↙";
-        } else if (degree == 270) {
+        } else if (degree == 90) {
             direction = "↓";
-        } else if (degree > 270 && degree <= 360) {
+        } else if (degree > 90 && degree < 180) {
             direction = "↘";
+        } else if (degree == 180) {
+            direction = "→";
+        } else if (degree > 180 && degree < 270) {
+            direction = "↗";
+        } else if (degree == 270) {
+            direction = "↑";
+        } else if (degree > 270 && degree <= 360) {
+            direction = "↖";
         }
         return direction;
     }
