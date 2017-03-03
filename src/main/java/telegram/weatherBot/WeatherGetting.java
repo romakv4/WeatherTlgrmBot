@@ -43,6 +43,7 @@ class WeatherGetting {
         String[] strings = {
                 format("Погода: %d°C", Math.round(Temp)),
                 cloudiness.getCloudiness(opwei.getClouds()),
+                format("Влажность: %s", opwei.getMain().getHumidity() + "%"),
                 format("Ветер: %s %sм/с", wr.windRose(opwei.getWind().getDeg()), Math.round(opwei.getWind().getSpeed())),
         };
 

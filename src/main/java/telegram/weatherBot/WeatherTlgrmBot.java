@@ -6,7 +6,7 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import static org.telegram.telegrambots.ApiContextInitializer.*;
+import static org.telegram.telegrambots.ApiContextInitializer.init;
 import static telegram.weatherBot.WeatherGetting.getWeather;
 
 /**
