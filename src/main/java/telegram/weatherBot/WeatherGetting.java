@@ -7,9 +7,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.Arrays;
 
-import static java.lang.String.*;
+import static java.lang.String.format;
 
 /**
  * Weather getting class for WeatherTelegramBot.
@@ -41,10 +43,12 @@ class WeatherGetting {
         Double Temp = Double.valueOf(opwei.getMain().getTemp_max()) - 273.15;
 
         String[] strings = {
-                format("Погода: %d°C", Math.round(Temp)),
+                format("Температура: %d°C", Math.round(Temp)),
                 cloudiness.getCloudiness(opwei.getClouds()),
-                format("Влажность: %s", opwei.getMain().getHumidity() + "%"),
                 format("Ветер: %s %sм/с", wr.windRose(opwei.getWind().getDeg()), Math.round(opwei.getWind().getSpeed())),
+                format("Влажность: %s", opwei.getMain().getHumidity() + " %"),
+//                format("Восход: %s", opwei.getSys().getSunrise()),
+//                format("Закат: %s", opwei.getSys().getSunset()),
         };
 
         return Arrays.toString(strings).replaceAll(", ", "\n");

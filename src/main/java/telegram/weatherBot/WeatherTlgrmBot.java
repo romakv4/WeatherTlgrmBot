@@ -41,18 +41,17 @@ public class WeatherTlgrmBot extends TelegramLongPollingBot {
 
         if (message != null && message.hasText()) {
             if (message.getText().equals("/start")){
-                sendMsg(message, "Теперь введите название своего города");
+                sendMessage(message, "Теперь введите название своего города");
             } else if (message.getText().equals("/help")) {
-                sendMsg(message, "Введите название города, чтобы узнать текущую погоду в нем"); //напоминалка
+                sendMessage(message, "Введите название города, чтобы узнать текущую погоду в нем"); //напоминалка
             } else if (message.getText() != null && !message.getText().equals("/help") &&
                     !message.getText().equals("/start")) {
-                sendMsg(message, getWeather(message.getText()));
+                sendMessage(message, getWeather(message.getText()));
             }
-
         }
     }
 
-    private void sendMsg(Message message, String text) {
+    private void sendMessage(Message message, String text) {
         org.telegram.telegrambots.api.methods.send.SendMessage sendMessage = new org.telegram.telegrambots.api.methods.send.SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());

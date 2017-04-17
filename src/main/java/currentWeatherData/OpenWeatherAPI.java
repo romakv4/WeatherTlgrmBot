@@ -118,4 +118,6 @@ public class OpenWeatherAPI {
     public String toString() {
         return "ClassPojo [id = " + id + ", dt = " + dt + ", clouds = " + clouds + ", coord = " + coord + ", wind = " + wind + ", cod = " + cod + ", sys = " + sys + ", name = " + name + ", base = " + base + ", weather = " + weather + ", main = " + main + "]";
     }
+
+
 }

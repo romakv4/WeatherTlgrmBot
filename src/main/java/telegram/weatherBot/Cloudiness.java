@@ -13,13 +13,13 @@ class Cloudiness {
         int cloudPercentage = Integer.parseInt(String.valueOf(clouds));
 
         if (cloudPercentage == 0) {
-            cloudiness = "Ясно";
+            cloudiness = "Ясно ☀";
         } else if (cloudPercentage > 0 && cloudPercentage < 30) {
-            cloudiness = "Малооблачно";
+            cloudiness = "Малооблачно \uD83C\uDF24";
         } else if (cloudPercentage > 30 && cloudPercentage < 70) {
-            cloudiness = "Средняя облачность";
+            cloudiness = "Средняя облачность ⛅";
         } else if (cloudPercentage > 70 && cloudPercentage < 100) {
-            cloudiness = "Сильная облачность";
+            cloudiness = "Сильная облачность \uD83C\uDF25";
         }
         return cloudiness;
     }
