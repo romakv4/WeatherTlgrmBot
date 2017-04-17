@@ -6,7 +6,7 @@ package currentWeatherData;
 public class Main {
     private String humidity;
 
-    private String pressure;
+    private int pressure;
 
     private String temp_max;
 
@@ -26,11 +26,11 @@ public class Main {
         this.humidity = humidity;
     }
 
-    public String getPressure() {
+    public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(String pressure) {
+    public void setPressure(int pressure) {
         this.pressure = pressure;
     }
 

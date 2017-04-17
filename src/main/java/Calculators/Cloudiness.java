@@ -1,14 +1,14 @@
-package telegram.weatherBot;
+package Calculators;
 
 import currentWeatherData.Clouds;
 
 /**
  * Cloudiness interpretation.
  */
-class Cloudiness {
+public class Cloudiness {
     private String cloudiness = null;
 
-    String getCloudiness(Clouds clouds) {
+    public String getCloudiness(Clouds clouds) {
 
         int cloudPercentage = Integer.parseInt(String.valueOf(clouds));
 

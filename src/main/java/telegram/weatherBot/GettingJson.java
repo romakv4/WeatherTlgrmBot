@@ -2,7 +2,7 @@ package telegram.weatherBot;
 
 import java.io.IOException;
 
-import static telegram.weatherBot.WeatherGetting.getJSON;
+import static telegram.weatherBot.JSONRequestBuilder.getJSON;
 
 /**
  * Class for getting JSON data.

@@ -1,12 +1,12 @@
-package telegram.weatherBot;
+package Calculators;
 
 /**
  * Its windRose for 8 direction.
  */
-class WindRose {
+public class WindRose {
     private String direction = null;
 
-    String windRose(Double degree) {
+    public String windRose(Double degree) {
         if (degree == 0) {
             direction = "⬇";
         } else if (degree > 0 && degree < 90) {

@@ -1,33 +1,19 @@
 package telegram.weatherBot;
 
+import Calculators.Cloudiness;
+import Calculators.MillibarsToMmHg;
+import Calculators.WindRose;
 import com.google.gson.Gson;
 import currentWeatherData.OpenWeatherAPI;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.util.Arrays;
 
 import static java.lang.String.format;
 
 /**
- * Weather getting class for WeatherTelegramBot.
+ * Weather Getting class fo my bot.
  */
-class WeatherGetting {
-
-    private static OkHttpClient client = new OkHttpClient();
-
-    static String getJSON(String url) throws IOException {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        Response response = client.newCall(request).execute();
-        return response.body().string();
-    }
+public class WeatherGetting {
 
     static String getWeather(String city) {
 
@@ -39,6 +25,7 @@ class WeatherGetting {
 
         WindRose wr = new WindRose();
         Cloudiness cloudiness = new Cloudiness();
+        MillibarsToMmHg MTM = new MillibarsToMmHg();
 
         Double Temp = Double.valueOf(opwei.getMain().getTemp_max()) - 273.15;
 
@@ -47,10 +34,8 @@ class WeatherGetting {
                 cloudiness.getCloudiness(opwei.getClouds()),
                 format("Ветер: %s %sм/с", wr.windRose(opwei.getWind().getDeg()), Math.round(opwei.getWind().getSpeed())),
                 format("Влажность: %s", opwei.getMain().getHumidity() + " %"),
-//                format("Восход: %s", opwei.getSys().getSunrise()),
-//                format("Закат: %s", opwei.getSys().getSunset()),
+                format("Давление: %s", MTM.millibarsToMmHg(opwei.getMain().getPressure()) + " мм рт.ст"),
         };
-
         return Arrays.toString(strings).replaceAll(", ", "\n");
     }
 }
