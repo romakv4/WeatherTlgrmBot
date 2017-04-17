@@ -1,4 +1,4 @@
-package Calculators;
+package calculators;
 
 /**
  * Calculator :D.

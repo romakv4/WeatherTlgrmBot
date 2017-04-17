@@ -1,10 +1,11 @@
 package telegram.weatherBot;
 
-import Calculators.Cloudiness;
-import Calculators.MillibarsToMmHg;
-import Calculators.WindRose;
+import calculators.Cloudiness;
+import calculators.MillibarsToMmHg;
+import calculators.WindRose;
 import com.google.gson.Gson;
 import currentWeatherData.OpenWeatherAPI;
+import workWithJson.GettingJson;
 
 import java.util.Arrays;
 

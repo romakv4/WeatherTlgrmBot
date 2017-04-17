@@ -1,4 +1,4 @@
-package Calculators;
+package calculators;
 
 import currentWeatherData.Clouds;
 

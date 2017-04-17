@@ -1,4 +1,4 @@
-package telegram.weatherBot;
+package workWithJson;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

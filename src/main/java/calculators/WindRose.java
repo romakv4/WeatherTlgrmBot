@@ -1,4 +1,4 @@
-package Calculators;
+package calculators;
 
 /**
  * Its windRose for 8 direction.

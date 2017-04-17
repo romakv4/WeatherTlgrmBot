@@ -1,20 +1,18 @@
-package telegram.weatherBot;
+package workWithJson;
 
 import java.io.IOException;
-
-import static telegram.weatherBot.JSONRequestBuilder.getJSON;
 
 /**
  * Class for getting JSON data.
  */
-class GettingJson {
+public class GettingJson {
 
-    String gettingJson(String city) {
+    public String gettingJson(String city) {
 
         String json = null;
 
         try {
-            json = getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + city +
+            json = JSONRequestBuilder.getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + city +
                     "&APPID=d4f9cdcc72088078ab2092ebe1841883");
         } catch (IOException e) {
             e.printStackTrace();
