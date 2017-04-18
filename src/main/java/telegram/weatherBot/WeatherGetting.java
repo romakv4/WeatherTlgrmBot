@@ -12,9 +12,9 @@ import java.util.Arrays;
 import static java.lang.String.format;
 
 /**
- * Weather Getting class fo my bot.
+ * Weather Getting class for my bot.
  */
-public class WeatherGetting {
+class WeatherGetting {
 
     static String getWeather(String city) {
 

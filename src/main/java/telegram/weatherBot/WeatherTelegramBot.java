@@ -12,13 +12,13 @@ import static telegram.weatherBot.WeatherGetting.getWeather;
 /**
  * WeatherTelegramBot!
  */
-public class WeatherTlgrmBot extends TelegramLongPollingBot {
+public class WeatherTelegramBot extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
         init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
-            telegramBotsApi.registerBot(new WeatherTlgrmBot());
+            telegramBotsApi.registerBot(new WeatherTelegramBot());
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class WeatherTlgrmBot extends TelegramLongPollingBot {
             if (message.getText().equals("/start")){
                 sendMessage(message, "Теперь введите название своего города");
             } else if (message.getText().equals("/help")) {
-                sendMessage(message, "Введите название города, чтобы узнать текущую погоду в нем"); //напоминалка
+                sendMessage(message, "Введите название города, чтобы узнать текущую погоду в нем");
             } else if (message.getText() != null && !message.getText().equals("/help") &&
                     !message.getText().equals("/start")) {
                 sendMessage(message, getWeather(message.getText()));
@@ -52,7 +52,8 @@ public class WeatherTlgrmBot extends TelegramLongPollingBot {
     }
 
     private void sendMessage(Message message, String text) {
-        org.telegram.telegrambots.api.methods.send.SendMessage sendMessage = new org.telegram.telegrambots.api.methods.send.SendMessage();
+        org.telegram.telegrambots.api.methods.send.SendMessage sendMessage
+                = new org.telegram.telegrambots.api.methods.send.SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
         sendMessage.setReplyToMessageId(message.getMessageId());
