@@ -1,18 +1,24 @@
 package telegram.weatherBot;
 
 import org.telegram.telegrambots.TelegramBotsApi;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import static org.telegram.telegrambots.ApiContextInitializer.init;
+import static telegram.weatherBot.SimplyTemperature.getSimplyTemperature;
 import static telegram.weatherBot.WeatherGetting.getWeather;
 
 /**
  * WeatherTelegramBot!
  */
 public class WeatherTelegramBot extends TelegramLongPollingBot {
+
+    private String city = null;
+    private Boolean cityEntered = false;
 
     public static void main(String[] args) {
         init();
@@ -45,16 +51,25 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
             } else if (message.getText().equals("/help")) {
                 sendMessage(message, "Введите название города, чтобы узнать текущую погоду в нем");
             } else if (message.getText() != null && !message.getText().equals("/help") &&
-                    !message.getText().equals("/start")) {
-                sendMessage(message, getWeather(message.getText()));
+                    !message.getText().equals("/start") && !message.getText().equals("Подробнее")) {
+                sendMessage(message, getSimplyTemperature(message.getText()));
+                city = message.getText();
+            } else if(message.getText().equals("Подробнее")) {
+                sendMessage(message, "For " + city + "\n" + getWeather(city));
             }
         }
     }
 
+    private String editMessageText(String weather) {
+        return weather;
+    }
+
     private void sendMessage(Message message, String text) {
-        org.telegram.telegrambots.api.methods.send.SendMessage sendMessage
-                = new org.telegram.telegrambots.api.methods.send.SendMessage();
+        SendMessage sendMessage
+                = new SendMessage();
         sendMessage.enableMarkdown(true);
+        InlineKeyboardButton inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Подробнее");
         sendMessage.setChatId(message.getChatId().toString());
         sendMessage.setReplyToMessageId(message.getMessageId());
         sendMessage.setText(text);
