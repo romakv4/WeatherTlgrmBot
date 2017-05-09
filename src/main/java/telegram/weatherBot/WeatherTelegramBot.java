@@ -25,7 +25,6 @@ import static telegram.weatherBot.WeatherGetting.getWeather;
 public class WeatherTelegramBot extends TelegramLongPollingBot {
 
     private String city = null;
-    private boolean firstMessageIsSend = false;
 
     public static void main(String[] args) {
         init();
@@ -53,9 +52,12 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
             Message message = update.getMessage();
             if (message != null && message.hasText()) {
                 if (message.getText().equals("/start")) {
-                    sendMsg(message, "Теперь введите название своего города", true);
+                    sendSimpleMsg(message, "Теперь введите название своего города");
                 } else if (message.getText().equals("/help")) {
-                    sendMsg(message, "Введите название города, чтобы узнать текущую погоду в нем", true);
+                    sendSimpleMsg(message, "Введите название города, чтобы узнать текущую погоду в нем");
+                } else if (!message.getText().equals("/start") && !message.getText().equals("/help")) {
+                    city = message.getText();
+                    sendMsg(message, getSimplyTemperature(city), false);
                 }
             }
         } else if (update.hasCallbackQuery()) {
@@ -97,12 +99,6 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
     }
 
     private void sendMsg(Message message, String text, boolean isReplay) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.enableMarkdown(true);
-        sendMessage.setChatId(message.getChatId().toString());
-        if (isReplay) {
-            sendMessage.setReplyToMessageId(message.getMessageId());
-        }
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> keys = new ArrayList<>();
@@ -110,8 +106,27 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
         keys.add(button.setText("Подробно").setCallbackData("Подробно"));
         keyboard.add(keys);
         markup.setKeyboard(keyboard);
-        sendMessage.setReplyMarkup(markup);
-        sendMessage.setText(text);
+        SendMessage sendMessage = new SendMessage()
+                .enableMarkdown(true)
+                .setChatId(message.getChatId().toString())
+                .setReplyMarkup(markup)
+                .setText(text);
+        if (isReplay) {
+            sendMessage.setReplyToMessageId(message.getMessageId());
+        }
+        try {
+            sendMessage(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendSimpleMsg(Message message, String text) {
+        SendMessage sendMessage = new SendMessage()
+                .enableMarkdown(true)
+                .setChatId(message.getChatId().toString())
+                .setText(text)
+                .setReplyToMessageId(message.getMessageId());
         try {
             sendMessage(sendMessage);
         } catch (TelegramApiException e) {
