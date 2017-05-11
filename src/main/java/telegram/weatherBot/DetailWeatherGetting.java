@@ -29,13 +29,16 @@ class DetailWeatherGetting {
         MillibarsToMmHg MTM = new MillibarsToMmHg();
 
         Double Temp = Double.valueOf(opwei.getMain().getTemp_max()) - 273.15;
+        double pressure = Double.valueOf(opwei.getMain().getPressure());
 
         String[] strings = {
                 format("Температура: %d°C", Math.round(Temp)),
                 cloudiness.getCloudiness(opwei.getClouds()),
-                format("Ветер: %s %sм/с", wr.windRose(Double.valueOf(opwei.getWind().getDeg())), Math.round(Float.parseFloat(opwei.getWind().getSpeed()))),
+                format("Ветер: %s %sм/с", wr.windRose(Double.valueOf(opwei.getWind().getDeg())),
+                        Math.round(Float.valueOf(opwei.getWind().getSpeed()))),
                 format("Влажность: %s", opwei.getMain().getHumidity() + " %"),
-                format("Давление: %s", MTM.millibarsToMmHg(Integer.parseInt(opwei.getMain().getPressure())) + " мм рт.ст"),
+                format("Давление: %s", Math.round(MTM.millibarsToMmHg(pressure))
+                        + " мм рт.ст"),
         };
         return Arrays.toString(strings).replaceAll(", ", "\n");
     }

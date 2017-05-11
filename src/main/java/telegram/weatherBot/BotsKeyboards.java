@@ -11,6 +11,10 @@ import java.util.List;
  */
 class BotsKeyboards {
     InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+
+    /**
+     * Condition of keyboard for SimplyTemperature.
+     */
     void keyboardForSimple() {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> keys = new ArrayList<>();
@@ -19,6 +23,10 @@ class BotsKeyboards {
         keyboard.add(keys);
         markup.setKeyboard(keyboard);
     }
+
+    /**
+     * Condition of keyboard for DetailWeatherData.
+     */
     void keyboardForDetail() {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> keys = new ArrayList<>();

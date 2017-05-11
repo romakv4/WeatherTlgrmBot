@@ -11,7 +11,7 @@ import static java.lang.String.format;
 /**
  * This method send to user temperature in his city.
  */
-public class SimplyTemperature {
+class SimplyTemperature {
     static String getSimplyTemperature(String city) {
 
         GettingJson gJson = new GettingJson();
