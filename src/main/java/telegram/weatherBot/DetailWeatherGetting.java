@@ -22,21 +22,21 @@ class DetailWeatherGetting {
 
         Gson gson = new Gson();
 
-        OpenWeatherAPI opwei = gson.fromJson(gJson.gettingJson(city), OpenWeatherAPI.class);
+        OpenWeatherAPI openWeatherAPI = gson.fromJson(gJson.gettingJson(city), OpenWeatherAPI.class);
 
         WindRose wr = new WindRose();
         Cloudiness cloudiness = new Cloudiness();
         MillibarsToMmHg MTM = new MillibarsToMmHg();
 
-        Double Temp = Double.valueOf(opwei.getMain().getTemp_max()) - 273.15;
-        double pressure = Double.valueOf(opwei.getMain().getPressure());
+        double Temp = Double.valueOf(openWeatherAPI.getMain().getTemp_max()) - 273.15;
+        double pressure = Double.valueOf(openWeatherAPI.getMain().getPressure());
 
         String[] strings = {
                 format("Температура: %d°C", Math.round(Temp)),
-                cloudiness.getCloudiness(opwei.getClouds()),
-                format("Ветер: %s %sм/с", wr.windRose(Double.valueOf(opwei.getWind().getDeg())),
-                        Math.round(Float.valueOf(opwei.getWind().getSpeed()))),
-                format("Влажность: %s", opwei.getMain().getHumidity() + " %"),
+                cloudiness.getCloudiness(openWeatherAPI.getClouds()),
+                format("Ветер: %s %sм/с", wr.windRose(Double.valueOf(openWeatherAPI.getWind().getDeg())),
+                        Math.round(Float.valueOf(openWeatherAPI.getWind().getSpeed()))),
+                format("Влажность: %s", openWeatherAPI.getMain().getHumidity() + " %"),
                 format("Давление: %s", Math.round(MTM.millibarsToMmHg(pressure))
                         + " мм рт.ст"),
         };

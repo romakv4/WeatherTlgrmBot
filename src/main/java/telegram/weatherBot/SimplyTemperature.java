@@ -18,9 +18,9 @@ class SimplyTemperature {
 
         Gson gson = new Gson();
 
-        OpenWeatherAPI opwei = gson.fromJson(gJson.gettingJson(city), OpenWeatherAPI.class);
+        OpenWeatherAPI openWeatherAPI = gson.fromJson(gJson.gettingJson(city), OpenWeatherAPI.class);
 
-        Double Temp = Double.valueOf(opwei.getMain().getTemp_max()) - 273.15;
+        double Temp = Double.valueOf(openWeatherAPI.getMain().getTemp_max()) - 273.15;
 
         String[] strings = {
                 format("Температура: %d°C", Math.round(Temp)),
