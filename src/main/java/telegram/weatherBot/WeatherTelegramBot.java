@@ -3,7 +3,6 @@ package telegram.weatherBot;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.methods.send.SendSticker;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
@@ -17,7 +16,7 @@ import java.util.*;
 
 import static org.telegram.telegrambots.ApiContextInitializer.init;
 import static telegram.weatherBot.SimplyTemperature.getSimplyTemperature;
-import static telegram.weatherBot.WeatherGetting.getWeather;
+import static telegram.weatherBot.DetailWeatherGetting.getDetailWeather;
 
 /**
  * WeatherTelegramBot!
@@ -67,7 +66,7 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
             if (query.getData().equals("Подробно")) {
                 BotsKeyboards botsKeyboards = new BotsKeyboards();
                 botsKeyboards.keyboardForDetail();
-                String answer = getWeather(city);
+                String answer = getDetailWeather(city);
                 EditMessageText new_message = new EditMessageText()
                         .setChatId(update.getCallbackQuery().getMessage().getChatId())
                         .setMessageId(update.getCallbackQuery().getMessage().getMessageId())
@@ -110,7 +109,8 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
                 .enableMarkdown(true)
                 .setChatId(message.getChatId().toString())
                 .setReplyMarkup(markup)
-                .setText(text);
+                .setText(text)
+                .setReplyToMessageId(message.getMessageId());
         if (isReplay) {
             sendMessage.setReplyToMessageId(message.getMessageId());
         }
@@ -125,8 +125,7 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
         SendMessage sendMessage = new SendMessage()
                 .enableMarkdown(true)
                 .setChatId(message.getChatId().toString())
-                .setText(text)
-                .setReplyToMessageId(message.getMessageId());
+                .setText(text);
         try {
             sendMessage(sendMessage);
         } catch (TelegramApiException e) {

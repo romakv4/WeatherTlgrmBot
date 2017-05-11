@@ -14,9 +14,9 @@ import static java.lang.String.format;
 /**
  * Weather Getting class for my bot.
  */
-class WeatherGetting {
+class DetailWeatherGetting {
 
-    static String getWeather(String city) {
+    static String getDetailWeather(String city) {
 
         GettingJson gJson = new GettingJson();
 
@@ -35,7 +35,7 @@ class WeatherGetting {
                 cloudiness.getCloudiness(opwei.getClouds()),
                 format("Ветер: %s %sм/с", wr.windRose(Double.valueOf(opwei.getWind().getDeg())), Math.round(Float.parseFloat(opwei.getWind().getSpeed()))),
                 format("Влажность: %s", opwei.getMain().getHumidity() + " %"),
-                format("Давление: %s", MTM.millibarsToMmHg(opwei.getMain().getPressure()) + " мм рт.ст"),
+                format("Давление: %s", MTM.millibarsToMmHg(Integer.parseInt(opwei.getMain().getPressure())) + " мм рт.ст"),
         };
         return Arrays.toString(strings).replaceAll(", ", "\n");
     }
