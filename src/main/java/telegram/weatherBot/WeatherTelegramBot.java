@@ -1,5 +1,6 @@
 package telegram.weatherBot;
 
+import keyboards.BotsKeyboards;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -11,8 +12,8 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import static org.telegram.telegrambots.ApiContextInitializer.init;
-import static telegram.weatherBot.DetailWeatherGetting.getDetailWeather;
-import static telegram.weatherBot.SimplyTemperature.getSimplyTemperature;
+import static weatherGetting.DetailWeatherGetting.getDetailWeather;
+import static weatherGetting.SimplyTemperatureGetting.getSimplyTemperature;
 
 /**
  * WeatherTelegramBot!

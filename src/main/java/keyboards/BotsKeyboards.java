@@ -1,4 +1,4 @@
-package telegram.weatherBot;
+package keyboards;
 
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -9,13 +9,13 @@ import java.util.List;
 /**
  * Keyboards for my bot.
  */
-class BotsKeyboards {
-    InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+public class BotsKeyboards {
+    public InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
     /**
-     * Condition of keyboard for SimplyTemperature.
+     * Condition of keyboard for SimplyTemperatureGetting.
      */
-    void keyboardForSimple() {
+    public void keyboardForSimple() {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> keys = new ArrayList<>();
         InlineKeyboardButton button = new InlineKeyboardButton();
@@ -27,7 +27,7 @@ class BotsKeyboards {
     /**
      * Condition of keyboard for DetailWeatherData.
      */
-    void keyboardForDetail() {
+    public void keyboardForDetail() {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> keys = new ArrayList<>();
         InlineKeyboardButton button = new InlineKeyboardButton();

@@ -1,4 +1,4 @@
-package telegram.weatherBot;
+package weatherGetting;
 
 import com.google.gson.Gson;
 import currentWeatherData.OpenWeatherAPI;
@@ -11,8 +11,8 @@ import static java.lang.String.format;
 /**
  * This method send to user temperature in his city.
  */
-class SimplyTemperature {
-    static String getSimplyTemperature(String city) {
+public class SimplyTemperatureGetting {
+    public static String getSimplyTemperature(String city) {
 
         GettingJson gJson = new GettingJson();
 

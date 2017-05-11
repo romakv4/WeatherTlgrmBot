@@ -1,4 +1,4 @@
-package telegram.weatherBot;
+package weatherGetting;
 
 import calculators.Cloudiness;
 import calculators.MillibarsToMmHg;
@@ -14,9 +14,9 @@ import static java.lang.String.format;
 /**
  * Weather Getting class for my bot.
  */
-class DetailWeatherGetting {
+public class DetailWeatherGetting {
 
-    static String getDetailWeather(String city) {
+    public static String getDetailWeather(String city) {
 
         GettingJson gJson = new GettingJson();
 
