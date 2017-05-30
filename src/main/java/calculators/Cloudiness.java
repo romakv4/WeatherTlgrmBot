@@ -18,7 +18,7 @@ public class Cloudiness {
             cloudiness = "Малооблачно \uD83C\uDF24";
         } else if (cloudPercentage > 30 && cloudPercentage < 70) {
             cloudiness = "Средняя облачность ⛅";
-        } else if (cloudPercentage > 70 && cloudPercentage < 100) {
+        } else {
             cloudiness = "Сильная облачность \uD83C\uDF25";
         }
         return cloudiness;

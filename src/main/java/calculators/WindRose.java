@@ -21,7 +21,7 @@ public class WindRose {
             direction = "↗";
         } else if (degree == 270) {
             direction = "➡";
-        } else if (degree > 270 && degree <= 360) {
+        } else {
             direction = "↘";
         }
         return direction;

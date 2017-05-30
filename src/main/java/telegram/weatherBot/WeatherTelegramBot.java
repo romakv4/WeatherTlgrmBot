@@ -93,7 +93,6 @@ public class WeatherTelegramBot extends TelegramLongPollingBot {
             }
         }
     }
-
     private void sendMsg(Message message, String text) {
         BotsKeyboards botsKeyboards = new BotsKeyboards();
         botsKeyboards.keyboardForSimple();
