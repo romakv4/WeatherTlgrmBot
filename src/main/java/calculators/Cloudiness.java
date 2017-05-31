@@ -6,11 +6,12 @@ import currentWeatherData.Clouds;
  * Cloudiness interpretation.
  */
 public class Cloudiness {
-    private String cloudiness = null;
 
     public String getCloudiness(Clouds clouds) {
 
         int cloudPercentage = Integer.parseInt(String.valueOf(clouds));
+
+        String cloudiness;
 
         if (cloudPercentage == 0) {
             cloudiness = "Ясно ☀";

@@ -5,6 +5,8 @@ import calculators.MillibarsToMmHg;
 import calculators.WindRose;
 import com.google.gson.Gson;
 import currentWeatherData.OpenWeatherAPI;
+import currentWeatherData.Weather;
+import currentWeatherData.Wind;
 import workWithJson.GettingJson;
 
 import java.util.Arrays;
