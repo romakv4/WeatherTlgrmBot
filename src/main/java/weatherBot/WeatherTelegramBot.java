@@ -1,4 +1,4 @@
-package telegram.weatherBot;
+package weatherBot;
 
 import keyboards.BotsKeyboards;
 import org.telegram.telegrambots.TelegramBotsApi;
